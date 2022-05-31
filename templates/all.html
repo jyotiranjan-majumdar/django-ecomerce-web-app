@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+
+{% block content1 %}
+
+<div class="container" >
+<div class="row" >
+
+{% for product in products %}
+<div class="col-3">
+<div class="card" style="width: 18rem;">
+
+{% if product.productimage_set.all %}
+{% for item in product.productimage_set.all %}  
+{% if item.featured %}
+<img class="card-img-top" src="{{ item.image.url }}" />
+{% endif %}
+{% endfor %}
+{% else %}
+<img class="img-responsive" src=" {% static 'img/placeholder.jpg' %} " />
+{% endif %}
+
+
+<div class="card-body">
+<h5 class="card-title">{{product.title}}</h5>
+Rs:{{product.price}}<br/>
+<p class="card-text">{{product.description|truncatewords:15}}</p>
+<a href="/products/{{product.slug}}" class="btn btn-primary" role="button">view</a>             
+<a href="#" class="btn btn-primary" role="button">Add to Wish</a>
+<br/>
+<hr/>
+</p>
+</div> 
+</div>
+</div>   
+                    
+               
+                
+{% endfor%}
+
+</div></div></div>    
+{% endblock %}
+
+
+
+
+
+
+
+<!-- 
+{% block content %}
+
+<div class="container" >
+<div class="row" >
+
+{% for product in products %}
+<div class="col-3">
+<div class="card" style="width: 18rem;">
+
+{% if product.productimage_set.all %}
+{% for item in product.productimage_set.all %}  
+{% if item.featured %}
+<img class="card-img-top" src="{{ item.image.url }}" />
+{% endif %}
+{% endfor %}
+{% else %}
+<img class="img-responsive" src=" {% static 'img/placeholder.jpg' %} " />
+{% endif %}
+
+
+<div class="card-body">
+<h5 class="card-title">{{product.title}}</h5>
+Rs:{{product.price}}<br/>
+<p class="card-text">{{product.description|truncatewords:15}}</p>
+<a href="/products/{{product.slug}}" class="btn btn-primary" role="button">view</a>             
+<a href="#" class="btn btn-primary" role="button">Add to Wish</a>
+<br/>
+<hr/>
+</p>
+</div> 
+</div>
+</div>   
+                    
+               
+                
+{% endfor%}
+
+</div></div></div>    
+{% endblock %} -->
